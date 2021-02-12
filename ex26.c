@@ -53,9 +53,9 @@ void main(){
         return;
     }
     
-    for (i=row-1;i<=row;i++){
-        for (j=col-1;j<=col;j++){
-            if (i < 0 || j < 0) continue;
+    for (i=row-1;i<=row+1;i++){
+        for (j=col-1;j<=col+1;j++){
+            if (i<0 || j<0 || i>3 || j>3) continue;
             printf("%c ",chmatrix[i][j]);
         }
         printf("\n");
