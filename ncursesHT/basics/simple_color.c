@@ -1,4 +1,6 @@
 #include <ncurses.h>
+#include <string.h>
+#include <stdlib.h>
 
 void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string);
 int main(int argc, char *argv[])
@@ -8,11 +10,16 @@ int main(int argc, char *argv[])
 		printf("Your terminal does not support color\n");
 		exit(1);
 	}
+	if (can_change_color() == ERR){
+		endwin();
+		printf("Your terminal can not change color\n");
+		exit(1);
+	}
 	start_color();			/* Start color 			*/
-	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(1,  COLOR_BLACK, COLOR_RED);
 
 	attron(COLOR_PAIR(1));
-	print_in_middle(stdscr, LINES / 2, 0, 0, "Viola !!! In color ...");
+	print_in_middle(stdscr, LINES / 2, 0, 0, "Voila !!! In color ...");
 	attroff(COLOR_PAIR(1));
     	getch();
 	endwin();
