@@ -8,7 +8,7 @@ struct cell map_exit;
 
 void displayM(struct maze m);
 char ** get_maze_inputs();
-int[] convert_inputs(char** inputs);
+int* convert_inputs(char** inputs);
 
 
 void main(void){
@@ -16,8 +16,6 @@ void main(void){
     int row,col;            // terminal screen dimensions
     unsigned int width, height, cell_size;
     int rand_seed, fog;
-    map_enterance.x = 0;
-    map_exit.x = width-1;
     char** inputs;     // arrays of strings for height/width/cell_size/seed/fog ([5][10])
     int converted_inputs[5];    // array of int as above
     struct maze original;
@@ -42,8 +40,12 @@ void main(void){
     endwin();
 }
 
-
-int[] convert_inputs(char** inputs){
+/**
+ * converts the string values entered by the user
+ * of the properties for the maze
+ * to integers
+ * */
+int* convert_inputs(char** inputs){
     int i, j, e;
     int converted_inputs[5];
     for (i=0;i<5;i++){
@@ -56,6 +58,7 @@ int[] convert_inputs(char** inputs){
     }
 
     // A SUIVRE...
+    return converted_inputs;
 }
 
 /**
