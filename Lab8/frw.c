@@ -5,7 +5,7 @@
 void main(int argc, char *argv[]){
     FILE *f;
 
-    f= fopen("ex1.dat", "a");
+    f = fopen("ex1.dat", "a");
 
     if (argc >=2){
         int i;
