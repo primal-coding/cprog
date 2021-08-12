@@ -2,6 +2,7 @@
 #include <ncurses.h>
 
 void main(void){
+    WINDOW *vin;
        // initscr();
     // printw("Hello World!!!\n->");
     // refresh();
@@ -12,25 +13,37 @@ void main(void){
     // endwin();
     initscr();
     cbreak();
-    noecho();
-    clear();
-    WINDOW *vin;
+    // noecho();
+    // clear();
     
+    vin = newwin(4,10,5,7);
     start_color();
     init_pair(1,COLOR_YELLOW,COLOR_BLUE);
     init_pair(2,COLOR_BLUE,COLOR_YELLOW);
     init_pair(3,COLOR_BLUE,COLOR_WHITE); 
-    vin=newwin(12,20,13,0);
-    //wbkgd(vin,COLOR_PAIR(1));
     wattron(vin,COLOR_PAIR(3));
-    wmove(vin,0,5);
-    mvaddch(4, 4, '*');
-    wprintw(vin,"Hello, World.");
-    mvaddstr(10, 0, "Press any key to quit");
-    mvaddch(2, 2, '.');
+    box(vin, 0 , 0); // -> test
+    //wbkgd(vin,COLOR_PAIR(1));
+    
+    // wmove(vin,1,5);
+    // wprintw(vin,"Fuck!  World. Hello\n");
+        getch();
     wrefresh(vin);
+    mvaddch(12, 12, '*');
     getch();
-    printw("Hello World!!!\n->");
+    
+    wprintw(vin,"Hello, World2.\n");
+    wclear(vin);
+        getch();
+    wattron(vin,COLOR_PAIR(1));
+    wprintw(vin,"Hello, World.3\n");
+    wrefresh(vin);
+    mvaddstr(10, 1, "Press any key to quit");
+    mvaddch(2, 2, '#');
+    // refresh(); // <- test
+    getch();
+    printw("\nHello World!!!\n_->");
+    wprintw(vin,"Hello, World2.\n");
     wrefresh(vin);
     getch();
     delwin(vin);
